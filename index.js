@@ -32,7 +32,7 @@ app.use('/auth', authRoutes)
 app.use(genRoutes)
 
 mongoose.connect(`mongodb+srv://agnirudra:${"7Bh8hcWRtVlLplTk"}@cluster0.qhrdt.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }).then(result => {
-    app.listen(5000)
+    app.listen(process.env.PORT || 5000)
 }).catch(err => {
     console.log(err)
 })
