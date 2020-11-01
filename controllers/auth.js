@@ -12,14 +12,13 @@ exports.signup = (req, res, next) => {
         error.data = errors.array()
         throw error
     }
-    const email = req.body.email
+
     const name = req.body.name
     const password = req.body.password
 
     bcrypt.hash(password, 12)
         .then(hashedPw => {
             const user = new User({
-                email: email,
                 password: hashedPw,
                 name: name
             })
@@ -36,13 +35,13 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-    const email = req.body.email
+    const name = req.body.name
     const password = req.body.password
     let loadedUser
-    User.findOne({ email: email })
+    User.findOne({ name: name })
         .then(user => {
             if (!user) {
-                const error = new Error('A user with this email could not be found')
+                const error = new Error('A user with this Name could not be found')
                 error.statusCode = 401
                 throw error
             }
@@ -57,7 +56,7 @@ exports.login = (req, res, next) => {
                 throw error
             }
             const token = jwt.sign({
-                email: loadedUser.email,
+                name: loadedUser.name,
                 userId: loadedUser._id.toString()
             }, process.env.ACCESS_TOKEN,
                 { expiresIn: '1h' }
