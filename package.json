@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ACCESS_TOKEN=e25466911930216c5a1ef896c8724cdd5059c38a6a9ee24136566a3bd25e4ab7235a68dd332195b929de24cb87fcbd0d9ab8a9262e76c1eca174d24c02bbea1d index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
